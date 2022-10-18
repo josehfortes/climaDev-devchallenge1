@@ -12,7 +12,6 @@ const VerticalText = styled.h1`
 
 const HorizontalText = styled.h1`
   font-size: 40px;
-
 `
 
 const PrimaryColor = styled.span`
