@@ -43,13 +43,13 @@ export default function InfoPage() {
   const { lat, lon } = router.query
 
   const fetchCurrentInfo = async () => {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_OWM_KEY}&units=metric&lang=pt_br`)
+    const response = await fetch(`/api/openweathermap?url=/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=pt_br`)
     const json = await response.json()
     setCurrentInfo(json)
   }
 
   const fetchFutureInfo = async () => {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_OWM_KEY}&units=metric&lang=pt_br`)
+    const response = await fetch(`/api/openweathermap?url=/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=pt_br`)
     const json = await response.json()
     setFutureInfo(json)
   }
@@ -71,7 +71,7 @@ export default function InfoPage() {
             <CityName>{currentInfo?.name}, {currentInfo?.sys.country}</CityName>
           </Content>
           <InfoContainer>
-            <ClimaCard 
+            <ClimaCard
               title="Agora"
               icon={currentInfo?.weather[0].icon}
               description={currentInfo?.weather[0].description}
@@ -80,7 +80,7 @@ export default function InfoPage() {
               min={currentInfo?.main.temp_min}
               max={currentInfo?.main.temp_max}
             />
-            <ClimaCard 
+            <ClimaCard
               title="Próximas 3 horas"
               icon={futureInfo?.list[0].weather[0].icon}
               description={futureInfo?.list[0].weather[0].description}
@@ -89,7 +89,7 @@ export default function InfoPage() {
               min={futureInfo?.list[0].main.temp_min}
               max={futureInfo?.list[0].main.temp_max}
             />
-            <ClimaCard 
+            <ClimaCard
               title="Próximas 6 horas"
               icon={futureInfo?.list[1].weather[0].icon}
               description={futureInfo?.list[1].weather[0].description}
