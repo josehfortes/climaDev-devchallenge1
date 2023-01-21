@@ -9,8 +9,8 @@ export default function SearchCity() {
   const router = useRouter()
 
   const fetchCitiesList = async () => {
-    const CITIES_LIMIT = 5    
-    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=${CITIES_LIMIT}&appid=${process.env.NEXT_PUBLIC_OWM_KEY}`)
+    const CITIES_LIMIT = 5
+    const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=${CITIES_LIMIT}&appid=${process.env.NEXT_PUBLIC_OWM_KEY}`)
     const json = await response.json()
     handleList(json)
   }
@@ -29,7 +29,7 @@ export default function SearchCity() {
   }, [searchText])
 
   return (
-    <InputWithSuggestions 
+    <InputWithSuggestions
       placeholder='Digite o nome da cidade'
       value={searchText}
       onChange={(event) => setSearchText(event.target.value)}
